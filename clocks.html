@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>When Do Clocks Change? | Is It Daylight Saving Time?</title>
+  <meta name="description" content="Find out exactly when clocks change for Daylight Saving Time in the U.S. — spring forward and fall back dates for the next several years." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #000000;
+      --bg: #f9fafb;
+      --text: #111827;
+      --card-bg: #ffffff;
+      --radius: 16px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      --bg: #1e293b;
+      --text: #f1f5f9;
+      --card-bg: #334155;
+    }
+
+    /* --- Header Nav --- */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    body.dark .brand {
+      color: #ffffff;
+    }
+
+    /* Dark/Light toggle */
+    .toggle-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background: #e2e8f0;
+    }
+
+    header.page-header {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    body.dark h1 {
+      color: #ffffff;
+    }
+
+    section {
+      max-width: 850px;
+      margin: 0 auto 80px;
+      padding: 40px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    table th, table td {
+      padding: 14px 18px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+
+    table th {
+      font-weight: 600;
+      background: #f1f5f9;
+    }
+
+    body.dark table th {
+      background: #475569;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 30px;
+      text-align: center;
+      background: #f8fafc;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    body.dark footer {
+      background: #0f172a;
+      color: #94a3b8;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Site-wide nav header -->
+  <div class="site-header">
+    <a href="index.html" class="brand">IsItDST</a>
+    <button class="toggle-btn" id="modeToggle">🌙 Dark Mode</button>
+  </div>
+
+  <header class="page-header">
+    <h1>When Do Clocks Change?</h1>
+    <p>Daylight Saving Time in the U.S. begins and ends on different Sundays each year. Here are the upcoming changes:</p>
+  </header>
+
+  <section>
+    <h2>Upcoming U.S. Clock Changes</h2>
+    <table>
+      <tr>
+        <th>Year</th>
+        <th>Spring Forward (Start DST)</th>
+        <th>Fall Back (End DST)</th>
+      </tr>
+      <tr>
+        <td>2025</td>
+        <td>Sunday, March 9 at 2:00 AM</td>
+        <td>Sunday, November 2 at 2:00 AM</td>
+      </tr>
+      <tr>
+        <td>2026</td>
+        <td>Sunday, March 8 at 2:00 AM</td>
+        <td>Sunday, November 1 at 2:00 AM</td>
+      </tr>
+      <tr>
+        <td>2027</td>
+        <td>Sunday, March 14 at 2:00 AM</td>
+        <td>Sunday, November 7 at 2:00 AM</td>
+      </tr>
+      <tr>
+        <td>2028</td>
+        <td>Sunday, March 12 at 2:00 AM</td>
+        <td>Sunday, November 5 at 2:00 AM</td>
+      </tr>
+      <tr>
+        <td>2029</td>
+        <td>Sunday, March 11 at 2:00 AM</td>
+        <td>Sunday, November 4 at 2:00 AM</td>
+      </tr>
+    </table>
+
+    <h2>FAQs</h2>
+    <h3>Why 2:00 AM?</h3>
+    <p>Clocks officially change at <strong>2:00 AM local time</strong> to minimize disruption. It avoids midnight confusion and late-night business impacts.</p>
+
+    <h3>Do all states change?</h3>
+    <p>No. Hawaii and most of Arizona do not observe Daylight Saving Time. The rest of the U.S. does.</p>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> DST Checker |
+      <a href="index.html">Home</a> |
+      <a href="clocks.html">When Do Clocks Change?</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="contact.html">Contact</a>
+    </p>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const modeToggle = document.getElementById("modeToggle");
+    modeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      modeToggle.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | Is It Daylight Saving Time?</title>
+  <meta name="description" content="Learn about the purpose of IsItDST.com, why it was created, and who maintains it." />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #000000;
+      --bg: #f9fafb;
+      --text: #111827;
+      --card-bg: #ffffff;
+      --radius: 16px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    body.dark {
+      --bg: #1e293b;
+      --text: #f1f5f9;
+      --card-bg: #334155;
+    }
+
+    /* --- Header Nav --- */
+    .site-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 24px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    body.dark .brand {
+      color: #ffffff;
+    }
+
+    /* Dark/Light toggle */
+    .toggle-btn {
+      padding: 8px 14px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .toggle-btn:hover {
+      background: #e2e8f0;
+    }
+
+    header.page-header {
+      text-align: center;
+      padding: 60px 20px 30px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+    }
+
+    body.dark h1 {
+      color: #ffffff;
+    }
+
+    section {
+      max-width: 850px;
+      margin: 0 auto 80px;
+      padding: 40px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    section p {
+      margin-bottom: 20px;
+    }
+
+    footer {
+      margin-top: auto;
+      padding: 30px;
+      text-align: center;
+      background: #f8fafc;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+
+    body.dark footer {
+      background: #0f172a;
+      color: #94a3b8;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <!-- Site-wide nav header -->
+  <div class="site-header">
+    <a href="index.html" class="brand">IsItDST</a>
+    <button class="toggle-btn" id="modeToggle">🌙 Dark Mode</button>
+  </div>
+
+  <header class="page-header">
+    <h1>About This Site</h1>
+    <p>A quick explanation of what IsItDST is and why it exists.</p>
+  </header>
+
+  <section>
+    <h2>Our Purpose</h2>
+    <p><strong>IsItDST.com</strong> was built to answer one of the most common seasonal questions: 
+    <em>“Is it Daylight Saving Time right now?”</em> Instead of searching through multiple sites, you get a simple yes/no answer with the next clock change date and time.</p>
+
+    <h2>Why It Matters</h2>
+    <p>Daylight Saving Time can be confusing, especially when planning travel, meetings, or remote work across time zones. Our goal is to make it easy for anyone to check the current status in seconds.</p>
+
+    <h2>Who We Are</h2>
+    <p>This site is maintained by an independent developer passionate about making useful, lightweight tools on the web. No big company, no fluff — just simple answers.</p>
+
+    <h2>What’s Next</h2>
+    <p>We may expand into more “Is it ___?” style tools for common questions people ask. Have suggestions? Head over to our <a href="contact.html">Contact page</a> and share your ideas.</p>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> DST Checker |
+      <a href="index.html">Home</a> |
+      <a href="clocks.html">When Do Clocks Change?</a> |
+      <a href="about.html">About</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="contact.html">Contact</a>
+    </p>
+  </footer>
+
+  <script>
+    // Dark mode toggle
+    const modeToggle = document.getElementById("modeToggle");
+    modeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      modeToggle.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    // Dynamic year in footer
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
