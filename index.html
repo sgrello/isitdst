@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Is It Daylight Saving Time?</title>
+  <meta name="description" content="Check instantly if it’s Daylight Saving Time in the U.S. See when clocks change next, why DST exists, and which states observe it." />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Is It Daylight Saving Time?" />
+  <meta property="og:description" content="Check instantly if it’s Daylight Saving Time and see when the clocks change next in the U.S." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://yourdomain.com" />
+  <meta property="og:image" content="https://yourdomain.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #000000;
+      --yes: #16a34a;
+      --no: #dc2626;
+      --bg: #f9fafb;
+      --text: #111827;
+      --card-bg: #ffffff;
+      --radius: 16px;
+      --shadow: 0 12px 30px rgba(0, 0, 0, 0.06);
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Space Grotesk', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      transition: background 0.3s, color 0.3s;
+      position: relative;
+    }
+
+    body.dark {
+      --bg: #1e293b;
+      --text: #f1f5f9;
+      --card-bg: #334155;
+    }
+
+    header {
+      text-align: center;
+      padding: 80px 20px 40px;
+    }
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--primary);
+      transition: color 0.3s;
+    }
+
+    body.dark h1 { color: #ffffff; }
+
+    /* Dark/Light toggle */
+    .toggle-btn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 16px;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      font-weight: 600;
+      transition: all 0.3s;
+      z-index: 1000;
+    }
+
+    .toggle-btn:hover { background: #e2e8f0; }
+
+    label {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    select {
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      border: 1px solid #e2e8f0;
+      font-size: 1rem;
+      cursor: pointer;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+      transition: all 0.2s ease;
+      margin-top: 10px;
+    }
+
+    select:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .status-box {
+      display: inline-block;
+      background: var(--card-bg);
+      padding: 30px 40px;
+      border-radius: var(--radius);
+      margin-top: 25px;
+      box-shadow: var(--shadow);
+      text-align: center;
+      max-width: 500px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .answer {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin: 0 0 12px;
+      transition: color 0.3s ease;
+    }
+    .answer.yes { color: var(--yes); }
+    .answer.no { color: var(--no); }
+
+    .countdown {
+      font-size: 1.2rem;
+      color: #374151;
+    }
+    body.dark .countdown { color: #e2e8f0; }
+
+    section {
+      max-width: 850px;
+      margin: 0 auto 80px;
+      padding: 50px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: background 0.3s, color 0.3s;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 25px;
+      font-weight: 600;
+      color: var(--primary);
+    }
+    section h3 {
+      margin-top: 30px;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+    section p { line-height: 1.6; }
+
+    footer {
+      margin-top: auto;
+      padding: 30px;
+      text-align: center;
+      background: #f8fafc;
+      font-size: 0.95rem;
+      color: #64748b;
+    }
+    body.dark footer {
+      background: #0f172a;
+      color: #94a3b8;
+    }
+
+    footer .footer-links {
+      margin-top: 10px;
+    }
+
+    footer a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 10px;
+    }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      h1 { font-size: 2.2rem; }
+      .answer { font-size: 1.7rem; }
+      section { padding: 30px 20px; }
+      .toggle-btn { padding: 8px 12px; font-size: 0.9rem; }
+      footer a { display: block; margin: 5px 0; }
+    }
+  </style>
+</head>
+<body>
+  <button class="toggle-btn" id="modeToggle" aria-label="Toggle dark mode">🌙 Dark Mode</button>
+
+  <header>
+    <h1>Is it Daylight Saving Time?</h1>
+
+    <div>
+      <label for="timezone">Choose Time Zone:</label><br />
+      <select id="timezone">
+        <option value="America/New_York">Eastern Time (New York)</option>
+        <option value="America/Chicago">Central Time (Chicago)</option>
+        <option value="America/Denver">Mountain Time (Denver)</option>
+        <option value="America/Los_Angeles">Pacific Time (Los Angeles)</option>
+        <option value="America/Phoenix">Arizona (No DST)</option>
+        <option value="Pacific/Honolulu">Hawaii (No DST)</option>
+        <option value="America/Anchorage">Alaska Time</option>
+      </select>
+    </div>
+
+    <div class="status-box">
+      <div class="answer" id="answer">Checking...</div>
+      <div class="countdown" id="countdown">Next clock change date will appear here.</div>
+    </div>
+  </header>
+
+  <section id="faq">
+    <h2>Frequently Asked Questions</h2>
+
+    <h3>When do clocks change in the U.S.?</h3>
+    <p>Clocks change twice a year. They <strong>spring forward</strong> on the second Sunday in March and <strong>fall back</strong> on the first Sunday in November. The change occurs at <strong>2:00 AM local time</strong>.</p>
+
+    <h3>Is it Daylight Saving or Daylight Savings?</h3>
+    <p>The correct term is <strong>Daylight Saving Time</strong> (without the "s"). However, many people commonly say "Daylight Savings Time."</p>
+
+    <h3>Which states don’t observe it?</h3>
+    <p>Hawaii and most of Arizona do not observe Daylight Saving Time.</p>
+
+    <h3>Why do we have Daylight Saving Time?</h3>
+    <p>Daylight Saving Time was created to make better use of daylight during the longer summer months.</p>
+  </section>
+
+  <footer>
+    <p>&copy; <span id="year"></span> DST Checker. Sources: 
+      <a href="https://www.timeanddate.com/time/change/usa" target="_blank">Timeanddate.com</a>, 
+      <a href="https://www.time.gov/" target="_blank">time.gov</a>
+    </p>
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a> | 
+      <a href="contact.html">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    function getDSTStatus(timezone) {
+      const today = new Date();
+      const year = today.getFullYear();
+
+      // DST Start = 2nd Sunday in March
+      const dstStart = new Date(year, 2, 1);
+      dstStart.setDate(8 - dstStart.getDay() + 7);
+
+      // DST End = 1st Sunday in November
+      const dstEnd = new Date(year, 10, 1);
+      dstEnd.setDate(7 - dstEnd.getDay() + 1);
+
+      const answer = document.getElementById("answer");
+      const countdown = document.getElementById("countdown");
+
+      if (timezone === "America/Phoenix" || timezone === "Pacific/Honolulu") {
+        answer.textContent = "No — this location does not observe Daylight Saving Time";
+        answer.className = "answer no";
+        countdown.textContent = "The time never changes here.";
+        return;
+      }
+
+      if (today >= dstStart && today < dstEnd) {
+        answer.textContent = "Yes — currently in Daylight Saving Time";
+        answer.className = "answer yes";
+        countdown.textContent = `Clocks fall back on ${dstEnd.toLocaleDateString("en-US", {weekday: 'long', month: 'long', day: 'numeric'})} at 2:00 AM local time.`;
+      } else {
+        answer.textContent = "No — currently on Standard Time";
+        answer.className = "answer no";
+        countdown.textContent = `Clocks spring forward on ${dstStart.toLocaleDateString("en-US", {weekday: 'long', month: 'long', day: 'numeric'})} at 2:00 AM local time.`;
+      }
+    }
+
+    const userTZ = Intl.DateTimeFormat().resolvedOptions().timeZone || "America/New_York";
+    const tzSelect = document.getElementById("timezone");
+    if ([...tzSelect.options].some(opt => opt.value === userTZ)) {
+      tzSelect.value = userTZ;
+    } else {
+      tzSelect.value = "America/New_York";
+    }
+    getDSTStatus(tzSelect.value);
+    tzSelect.addEventListener("change", (e) => { getDSTStatus(e.target.value); });
+
+    const modeToggle = document.getElementById("modeToggle");
+    modeToggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      modeToggle.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+
+  <!-- FAQ Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "When do clocks change in the U.S.?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Clocks change twice a year. They spring forward on the second Sunday in March and fall back on the first Sunday in November at 2:00 AM local time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is it Daylight Saving or Daylight Savings?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The correct term is Daylight Saving Time (without the 's'), though many people say Daylight Savings Time."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which states don’t observe it?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Hawaii and most of Arizona do not observe Daylight Saving Time."
+        }
+      }
+    ]
+  }
+  </script>
+</body>
+</html>
